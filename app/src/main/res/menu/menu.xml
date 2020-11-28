@@ -16,4 +16,19 @@
         android:orderInCategory="1"
         android:title="Браузер"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/menuShow"
+        android:orderInCategory="1"
+        android:title="Просмотр файла"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/menuShowDatabase"
+        android:orderInCategory="1"
+        android:title="Просмотр базы данных"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/menuSharedPreference"
+        android:orderInCategory="1"
+        android:title="Настройка"
+        app:showAsAction="never" />
 </menu>

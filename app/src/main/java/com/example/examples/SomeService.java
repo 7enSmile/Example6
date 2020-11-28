@@ -5,6 +5,7 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.IBinder;
 import android.util.Log;
@@ -17,6 +18,9 @@ import static java.lang.Thread.sleep;
 import androidx.annotation.Nullable;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 public class SomeService extends Service {
@@ -76,6 +80,7 @@ public class SomeService extends Service {
                     if(!running){
                         break;
                     }
+                    writeToFile(Integer.toString(timer));
                     Intent in = new Intent("progress");
                     in.putExtra("Progress", timer);
 
@@ -108,6 +113,17 @@ public class SomeService extends Service {
             Toast.makeText(context, text, Toast.LENGTH_SHORT).show();
         }
     };
+    private void writeToFile(String message) {
+        File downloadsDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+        File myFile = new File(downloadsDir,"resultLog.txt");
+        try {
+            FileWriter out = new FileWriter(myFile, true);
+            out.write(message+"\n");
+            out.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 
 

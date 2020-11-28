@@ -1,5 +1,7 @@
 package com.example.examples;
 
+import android.content.ContentValues;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -24,11 +26,13 @@ public class FragmentOne extends Fragment {
     public String resultText;
     private Button button;
     View view;
+    DBHelper dbHelper;
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        dbHelper=new DBHelper(getActivity());
 
 
 
@@ -74,6 +78,11 @@ public class FragmentOne extends Fragment {
         Double y2=Double.parseDouble(objY1.getText().toString());
         Double res=Math.sqrt((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2));
         resultText=Double.toString(res);
+        SQLiteDatabase database=dbHelper.getWritableDatabase();
+        ContentValues contentValues=new ContentValues();
+        contentValues.put(DBHelper.KEY_PROGRAMS,"1");
+        contentValues.put(DBHelper.KEY_RESULT,resultText);
+        database.insert(DBHelper.TABLE_RESULT,null,contentValues);
         resText.setText(resultText);
         MainActivity parent = (MainActivity)getActivity();
 

@@ -114,6 +114,21 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
                 break;
             }
+            case R.id.menuShow:{
+                Intent intent=new Intent(this,ShowFile.class);
+                startActivity(intent);
+                break;
+            }
+            case R.id.menuShowDatabase:{
+                Intent intent=new Intent(this,ShowDatabase.class);
+                startActivity(intent);
+                break;
+            }
+            case R.id.menuSharedPreference:{
+                Intent intent=new Intent(this,SharedPreferencesActivity.class);
+                startActivity(intent);
+                break;
+            }
 
 
         }
