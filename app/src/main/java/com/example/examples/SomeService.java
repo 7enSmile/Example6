@@ -4,10 +4,12 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.IBinder;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -76,7 +78,9 @@ public class SomeService extends Service {
         thread=new Thread(new Runnable() {
             @Override
             public void run() {
-                for(int timer=1;timer<512;timer=timer*2){
+                SharedPreferences prefs= PreferenceManager.getDefaultSharedPreferences(context);
+                int step=Integer.parseInt(prefs.getString("shag","0"));
+                for(int timer=1;timer<512;timer=timer*step){
                     if(!running){
                         break;
                     }
